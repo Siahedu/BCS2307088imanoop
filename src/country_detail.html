@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="app-header">
+        <h1>🗺️ Dora's World Explorer !</h1>
+        <p>Join Dora on an adventure to explore countries around the world!</p>
+    </header>
+      <br><br>
+      <center><img src="detail.png" style="width: 200px; margin-bottom: -105px;" alt=""></center>
+    <div class="mainWrapper">
+        <h1 id="country-name">Country Details</h1>
+        <div id="country-details"></div>
+        <a href="index.html" class="back-button">🏠 Back to Home</a>
+        <a href="crud.html" class="back-button">✈ Add to Travel Wishlist</a>
+ 
+
+    <script src="world.js"></script>
+</body><style>
+/* General Styling */
+body {
+    background: linear-gradient(135deg, #ffca85, #ff99d9);
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    color: #5b1a53;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styling */
+.app-header {
+    background: linear-gradient(90deg, #9b59b6, #ff69b4);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: transform 0.3s ease; /* Smooth transition for sliding effect */
+}
+
+.app-header.hidden {
+    transform: translateY(-100%); /* Slide header up when hidden */
+}
+
+.app-header h1 {
+    font-size: 1.8em;
+    margin: 0;
+}
+
+.app-header p {
+    margin: 5px 0 0;
+    font-size: 1.1em;
+}
+
+/* Main Content Styling */
+.mainWrapper {
+    background: #ffefd5;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    margin: 100px auto 0;
+}
+.mainWrapper a{text-decoration: none; color: white;text-align: center;}
+
+/* Country Name Heading */
+#country-name {
+    font-size: 2em;
+    color: #d942f5;
+    margin: 0;
+}
+
+/* Country Details */
+#country-details {
+    margin-top: 20px;
+    font-size: 1.1em;
+    text-align: left;
+    color: #333;
+}
+
+#country-details img {
+    
+    border-radius: 5px;
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+#country-details p {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-size: 1.05em;
+    color: #5b1a53;
+}
+
+/* Back Button Styling */
+.back-button {
+    display: inline-block;
+    background: #d942f5;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background 0.3s ease;
+}
+
+.back-button:hover {
+    background: #a32eb2;
+}
+
+/* For mobile responsiveness */
+@media (max-width: 600px) {
+    .mainWrapper {
+        padding: 20px;
+    }
+
+    #country-name {
+        font-size: 1.8em;
+    }
+}
+</style>
+</html>

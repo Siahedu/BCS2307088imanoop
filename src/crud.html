@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dora's Wishlist Adventure</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', sans-serif;
+            background: linear-gradient(90deg, rgba(155, 89, 182, 0.8), rgba(255, 105, 180, 0.8));
+            margin: 0;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('15.jpeg');
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        body ::before{
+            background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4));
+        }
+        
+        .col1 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 30%;
+
+            background-size: cover;
+            
+            color:linear-gradient(90deg, rgba(155, 89, 182, 0.8), rgba(255, 105, 180, 0.8));
+            padding: 20px;
+            height: 100vh;
+        }
+
+        .col1 * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .col1 h1, .col1 p {
+            color: #fff;
+        }
+        
+        .col2 {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 50%;
+            text-align: center;
+            margin-top: 500px;
+        }
+        
+        h1 {
+            color: #9b59b6;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #9b59b6;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #btnCreate { background-color: #f39c12; }
+        #btnRead { background-color: #8e44ad; }
+        #btnDelete { background-color: #e74c3c; }
+        #btnUpdate { background-color: #3498db; }
+
+        .btn:hover { opacity: 0.9; }
+
+        .back-button {
+            margin-top: 15px;
+            text-decoration: none;
+            color: #8e44ad;
+            font-weight: bold;
+        }
+
+        .back-button:hover {
+            color: #5b2c6f;
+        }
+
+        #fileList {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        #fileList li {
+            background-color: #f9f9f9;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #fileList li:hover {
+            background-color: #f0f0f0;
+        }
+
+        #fileList li.selected {
+            background-color: #e0f3ff;
+            border-color: #0073e6;
+        }
+
+        .file-action-btn {
+            background-color: #ff6666;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .file-action-btn:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="col1">
+        <h1>🗺️ Dora World Explorer!</h1>
+        <p>Join Dora on an adventure to explore countries around the world!</p>
+        <img src="g.png" style="height: 300px; margin-bottom: -100%; margin-right: -120px; rotate: 160;" alt="">
+    </div>
+    
+    <div class="col2">
+        <h1>🎒 Dora's Wishlist Adventure</h1>
+        
+        <form>
+            <h2>Your Travel Wishlists</h2>
+            <ul id="fileList"></ul>
+
+            <div class="form-group">
+                <label for="fileName">Wishlist Name</label>
+                <input id="fileName" type="text" class="form-control"> 
+            </div>
+            <div class="form-group">
+                <label for="countryName">Country Name</label>
+                <input id="countryName" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="fileContents">Wishlist Activities</label>
+                <textarea id="fileContents" class="form-control" rows="3"></textarea>
+            </div> 
+            <div class="form-group">
+                <label for="fileTips">Personalized Tips (we will generate it for you)</label>
+                <textarea id="fileTips" class="form-control" rows="4" readonly></textarea>
+            </div>
+        </form>
+
+        <button id="btnCreate" class="btn">Create</button> 
+        <button id="btnUpdate" class="btn">Update</button>
+        <button id="btnDelete" class="btn">Delete</button>
+
+        <a href="index.html" class="back-button">🏠 Back to Home</a>
+    </div>
+
+    <script src="crud.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const selectedCountry = sessionStorage.getItem('selectedCountry');
+            if (selectedCountry) {
+                document.getElementById('countryName').value = selectedCountry;
+            }
+        });
+    </script>
+</body>
+</html>

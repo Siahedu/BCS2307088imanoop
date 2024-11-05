@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dora's Country Search Adventure!</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <style>
+    /* Dora-themed colors with Purple */
+    body {
+      background: linear-gradient(200deg,#afebf5, #ff99d9, #ffca85);
+      font-family: 'Comic Sans MS', sans-serif; /* Fun, playful font */
+      color: #333;
+    }
+
+    .app-header {
+      background: linear-gradient(90deg, #9b59b6, #ff69b4); /* Dora's signature purple */
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .app-header h1 {
+      font-size: 2.5rem;
+      
+    }
+
+    .app-header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    /* Dora-themed input and buttons with purple and yellow */
+    .search-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .search-input {
+      padding: 10px;
+      font-size: 1rem;
+      width: 250px;
+      border: 2px solid #9b59b6; /* Purple border */
+      border-radius: 5px;
+    }
+
+    .search-button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #f39c12; /* Dora's yellow-orange */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .search-button:hover {
+      background-color: #e67e22; /* Slightly darker yellow-orange */
+    }
+
+    /* Dora-themed map button */
+    .map-button {
+      padding: 10px;
+      margin: 14px;
+      font-size: 1rem;
+      background-color: #8e44ad; /* Darker purple for the map button */
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .map-button:hover {
+      background-color: #732d91; /* Even darker purple */
+    }
+
+    /* Countries display section */
+    .demo1 {
+      background-color: #f1c40f; /* Yellow box */
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    .demo1 h1 {
+      font-size: 2rem;
+      color: #9b59b6; /* Dora's purple */
+    }
+
+    /* Footer styling */
+    .app-footer {
+      background-color: #9b59b6;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 1rem;
+    }
+    .region-container {
+    margin: 20px 0;
+}
+
+.scroll-container {
+    display: flex;
+    align-items: center;
+}
+
+.countries-row {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 10px 0;
+    gap: 10px;
+    max-width: 100%; /* Ensure only part of the row is visible */
+}
+
+.country-info {
+    
+    min-width: 150px;
+    scroll-snap-align: start;
+    text-align: center;
+}
+.scroll-btn {
+    background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+    border: 2px solid rgba(255, 255, 255, 0.6); /* Light white border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px; /* Space inside the button */
+    font-size: 1.2em;
+    color: #333; /* Dark text for contrast */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Soft shadow */
+}
+
+.scroll-btn:hover {
+    background-color: rgba(255, 255, 255, 0.5); /* Slightly more opaque on hover */
+    transform: scale(1.05); /* Slightly larger on hover */
+}
+
+.scroll-btn:active {
+    background-color: rgba(255, 255, 255, 0.7); /* More opaque when clicked */
+    transform: scale(0.95); /* Pressed effect */
+}
+
+
+/* Style for the information box */
+/* Style for the main information box */
+.info-box {
+    background-color: white;
+    border-radius: 10px;
+    border-radius: dotted 49px purple;
+    padding: 55px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+    color: #333;
+    font-family: 'Comic Sans MS', sans-serif;
+    text-align: left;
+}
+
+/* Heading styles */
+.info-box h2 {
+    font-size: 1.8em;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.info-box p {
+    font-size: 1em;
+    margin: 10px 0;
+}
+
+/* Region list container */
+.region-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+/* Individual region item */
+.region-item {
+    flex: 1 1 200px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.region-item h3 {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Subregion list */
+.region-item ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.region-item li {
+    font-size: 0.9em;
+    padding: 5px 0;
+    text-align: center;
+    color: #666;
+}
+
+/* Map image section */
+.map-image {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.map-image img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 15px;
+}
+
+.map-image p {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 8px;
+}
+
+
+
+  </style>
+
+  <body>
+    <div class="app-container">
+      <!-- Header -->
+      <header class="app-header">
+        <h1>🗺️ Dora's World Explorer!</h1>
+        <p>Join Dora on an adventure to explore countries around the world!</p>
+      </header>
+      <img src="h.png" alt="">
+   
+
+      <p style="padding: 25px; font-size: 16pt;">👋 Hi! I'm Dora! Let’s go on an adventure! Use the search bar to find any country by name, capital, languange, country code, subregions or regions, or check out the countries by region below!</p>
+      <!-- Main content -->
+      <main class="app-main">
+        <div class="search-container">
+          <input
+            type="text"
+            id="input"
+            placeholder="Enter a country name"
+            class="search-input"
+          />
+          <button onclick="buttonclicked()" class="search-button">Search</button>
+          <button class="search-button"><a id="k" href="crud.html" style="text-decoration: none; color: white;">My Whishlists</a></button>
+        </div>
+      <div id="demo" class="result" style="margin: 40px;">
+          
+        </div>
+        <img src="hhh.png" style="width: 300px;margin-bottom: -25px;">
+
+        <div class="info-box">
+          <h2>Understanding World Regions and Subregions</h2>
+          <p>
+              The world is divided into several large <strong>Regions</strong> based on geographic, cultural, and economic characteristics. Within each region, there are <strong>Subregions</strong> which group countries with closer cultural, geographic, or political ties.
+          </p>
+          <div class="map-image">
+              <img src="map-world.png" alt="World Map showing regions" style="width: 600px;" />
+              <p>A world map showing the general location of each region and subregion.</p>
+          </div>
+      </div>
+      
+          
+         
+      </div>
+      <center><img src="greet.png" style="width: 200px;" alt=""></center>
+
+      <center><div id="demo1">
+          <h1>Countries by Region</h1>
+        </div></center>
+
+      
+      </main>
+
+      <!-- Footer -->
+      <footer class="app-footer">
+        <p>&copy; 2024 Dora's Explorer Adventure | All rights reserved</p>
+      </footer>
+    </div>
+
+    <script src="world.js">
+      // JavaScript Function to Scroll with Animation
+function scrollRight(container) {
+    const scrollAmount = container.clientWidth; // Scroll by one full width of the container
+    container.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth' // Smooth scrolling animation
+    });
+}
+
+function scrollLeft(container) {
+    const scrollAmount = container.clientWidth;
+    container.scrollBy({
+        left: -scrollAmount,
+        behavior: 'smooth' // Smooth scrolling animation
+    });
+}
+      
+    </script>
+  </body>
+</html>
